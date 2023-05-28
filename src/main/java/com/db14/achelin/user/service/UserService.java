@@ -1,6 +1,8 @@
 package com.db14.achelin.user.service;
 
 import com.db14.achelin.user.User;
+import com.db14.achelin.user.dto.UserGetResponse;
+import com.db14.achelin.user.dto.UserInfoResponse;
 import com.db14.achelin.user.dto.UserJoinRequest;
 import com.db14.achelin.user.dto.UserJoinResponse;
 import com.db14.achelin.user.repository.UserJpaRepository;
@@ -38,5 +40,32 @@ public class UserService {
         if (user.isPresent()) {
             emailExist = true;
         }
+    }
+
+    public UserGetResponse getOneUser(Long userId) {
+        User user = userJpaRepository.findById(userId)
+                .orElseThrow(()->{
+                    new IllegalArgumentException("user doesn't exist");
+                    return null;
+                });
+        return UserGetResponse.builder()
+                .email(user.getEmail())
+                .name(user.getName())
+                .validated(user.getValidated())
+                .phoneNum(user.getPhoneNum())
+                .build();
+    }
+
+    public UserInfoResponse deleteUser(Long userId) {
+        User user = userJpaRepository.findById(userId)
+                .orElseThrow(()->{
+                    new IllegalArgumentException("user doesn't exist");
+                    return null;
+                });
+        userJpaRepository.delete(user);
+        return UserInfoResponse.builder()
+                .userId(userId)
+                .message("deleted user.")
+                .build();
     }
 }
