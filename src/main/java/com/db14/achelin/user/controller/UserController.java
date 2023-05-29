@@ -1,10 +1,9 @@
-package com.db14.achelin.controller;
+package com.db14.achelin.user.controller;
 
 import com.db14.achelin.common.Result;
 import com.db14.achelin.user.dto.UserGetResponse;
 import com.db14.achelin.user.dto.UserInfoResponse;
 import com.db14.achelin.user.dto.UserJoinRequest;
-import com.db14.achelin.user.dto.UserJoinResponse;
 import com.db14.achelin.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +23,8 @@ public class UserController {
      * @return
      */
     @PostMapping("/join")
-    public ResponseEntity<Result<UserJoinResponse>> join(@RequestBody UserJoinRequest userJoinRequest) {
-        UserJoinResponse userJoinResponse = userService.join(userJoinRequest);
+    public ResponseEntity<Result<UserInfoResponse>> join(@RequestBody UserJoinRequest userJoinRequest) {
+        UserInfoResponse userJoinResponse = userService.join(userJoinRequest);
         return ResponseEntity.ok().body(Result.success(userJoinResponse));
     }
 

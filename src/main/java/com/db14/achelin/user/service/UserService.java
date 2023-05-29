@@ -4,7 +4,6 @@ import com.db14.achelin.user.User;
 import com.db14.achelin.user.dto.UserGetResponse;
 import com.db14.achelin.user.dto.UserInfoResponse;
 import com.db14.achelin.user.dto.UserJoinRequest;
-import com.db14.achelin.user.dto.UserJoinResponse;
 import com.db14.achelin.user.repository.UserJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ public class UserService {
 
     private final UserJpaRepository userJpaRepository;
 
-    public UserJoinResponse join(UserJoinRequest dto) {
+    public UserInfoResponse join(UserJoinRequest dto) {
         emailExist(dto.getEmail());
         User savedUser = userJpaRepository.save(
                 User.builder()
@@ -28,9 +27,9 @@ public class UserService {
                         .build()
         );
 
-        return UserJoinResponse.builder()
-                .name(savedUser.getName())
-                .email(savedUser.getEmail())
+        return UserInfoResponse.builder()
+                .userId(savedUser.getId())
+                .message("join success.")
                 .build();
     }
 

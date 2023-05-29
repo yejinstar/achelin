@@ -1,4 +1,4 @@
-package com.db14.achelin.user.dto;
+package com.db14.achelin.restaurant.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserJoinResponse {
-    private String name;
-    private String email;
+public class RestaurantResponse {
+    private String restaurantName;
+    private String message;
 }
