@@ -21,8 +21,8 @@ public class DishController {
         return ResponseEntity.ok().body(Result.success(dishResponse));
     }
 
-    @GetMapping("/{restaurantId}")
-    public ResponseEntity<Result<DishInfoResponse>> getOneRestaurant(@PathVariable Long dishID){
+    @GetMapping("/{dishID}")
+    public ResponseEntity<Result<DishInfoResponse>> getOneDishInfo(@PathVariable Long dishID){
         DishInfoResponse dishInfoResponse = dishService.getOneDishInfo(dishID);
         return ResponseEntity.ok().body(Result.success(dishInfoResponse));
     }
