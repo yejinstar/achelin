@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class DishRegisterRequest {
     private String dishName;
     private Long price;
-    private Long RestaurantID;
+    private Long restaurantID;
 }

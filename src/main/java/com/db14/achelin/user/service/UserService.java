@@ -41,7 +41,7 @@ public class UserService {
         }
     }
 
-    public UserGetResponse getOneUser(Long userId) {
+    public UserGetResponse getOneUserInfo(Long userId) {
         User user = userJpaRepository.findById(userId)
                 .orElseThrow(()->{
                     new IllegalArgumentException("user doesn't exist");
@@ -53,6 +53,15 @@ public class UserService {
                 .validated(user.getValidated())
                 .phoneNum(user.getPhoneNum())
                 .build();
+    }
+
+    public User getOneUser(Long userId) {
+        User user = userJpaRepository.findById(userId)
+                .orElseThrow(()->{
+                    new IllegalArgumentException("user doesn't exist");
+                    return null;
+                });
+        return user;
     }
 
     public UserInfoResponse deleteUser(Long userId) {

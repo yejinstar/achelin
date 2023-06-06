@@ -21,15 +21,15 @@ public class DishController {
         return ResponseEntity.ok().body(Result.success(dishResponse));
     }
 
-    @GetMapping("/{dishID}")
-    public ResponseEntity<Result<DishInfoResponse>> getOneDishInfo(@PathVariable Long dishID){
-        DishInfoResponse dishInfoResponse = dishService.getOneDishInfo(dishID);
+    @GetMapping("/{dishId}")
+    public ResponseEntity<Result<DishInfoResponse>> getOneDishInfo(@PathVariable Long dishId){
+        DishInfoResponse dishInfoResponse = dishService.getOneDishInfo(dishId);
         return ResponseEntity.ok().body(Result.success(dishInfoResponse));
     }
 
-    @DeleteMapping("/{dishID}")
-    public ResponseEntity<Result<DishResponse>> delete(@PathVariable Long dishID){
-        DishResponse dishResponse = dishService.deleteDish(dishID);
+    @DeleteMapping("/{dishId}")
+    public ResponseEntity<Result<DishResponse>> delete(@PathVariable Long dishId){
+        DishResponse dishResponse = dishService.deleteDish(dishId);
         return ResponseEntity.ok().body(Result.success(dishResponse));
     }
 }

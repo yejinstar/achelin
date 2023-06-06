@@ -29,8 +29,8 @@ public class DishService {
                 .build();
     }
 
-    public DishInfoResponse getOneDishInfo(Long dishID) {
-        Dish dish = dishJpaRepository.findById(dishID)
+    public DishInfoResponse getOneDishInfo(Long dishId) {
+        Dish dish = dishJpaRepository.findById(dishId)
                 .orElseThrow(() -> {
                             new IllegalArgumentException("dish doesn't exist");
                             return null;
@@ -44,10 +44,20 @@ public class DishService {
                 .build();
     }
 
-    public DishResponse deleteDish(Long dishID) {
-        Dish dish = dishJpaRepository.findById(dishID)
+    public Dish getOneDish(Long dishId){
+        Dish dish = dishJpaRepository.findById(dishId)
+                .orElseThrow(() -> {
+                            new IllegalArgumentException("dish doesn't exist");
+                            return null;
+                        }
+                );
+        return dish;
+    }
+
+    public DishResponse deleteDish(Long dishId) {
+        Dish dish = dishJpaRepository.findById(dishId)
                 .orElseThrow(()->{
-                    new IllegalArgumentException("user doesn't exist");
+                    new IllegalArgumentException("dish doesn't exist");
                     return null;
                 });
         String dishName = dish.getDishName();

@@ -35,7 +35,7 @@ public class UserController {
      */
     @GetMapping("/{userId}")
     public ResponseEntity<Result<UserGetResponse>> getOneUser(@PathVariable Long userId){
-        UserGetResponse userGetResponse = userService.getOneUser(userId);
+        UserGetResponse userGetResponse = userService.getOneUserInfo(userId);
         return ResponseEntity.ok().body(Result.success(userGetResponse));
     }
 
