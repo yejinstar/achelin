@@ -1,6 +1,8 @@
 package com.db14.achelin.order.controller;
 
 import com.db14.achelin.common.Result;
+import com.db14.achelin.order.dto.MyOrderList;
+import com.db14.achelin.order.dto.OrderListForRestaurant;
 import com.db14.achelin.order.dto.OrderMenuRequest;
 import com.db14.achelin.order.dto.OrderResponse;
 import com.db14.achelin.order.service.OrderService;
@@ -41,5 +43,17 @@ public class OrderController {
     public ResponseEntity<Result<String>> cancelOrder(@PathVariable Long orderId) {
         String cancelMessage = orderService.cancelOrder(orderId);
         return ResponseEntity.ok().body(Result.success(cancelMessage));
+    }
+
+    @GetMapping("/restaurant/{restaurantId}")
+    public ResponseEntity<Result<OrderListForRestaurant>> orderListForRestaurant(@PathVariable Long restaurantId) {
+        OrderListForRestaurant list = orderService.orderListForRestaurant(restaurantId);
+        return ResponseEntity.ok().body(Result.success(list));
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Result<MyOrderList>> myOrderList(@PathVariable Long userId) {
+        MyOrderList list = orderService.myOrderList(userId);
+        return ResponseEntity.ok().body(Result.success(list));
     }
 }
