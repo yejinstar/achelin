@@ -1,8 +1,6 @@
 package com.db14.achelin.order.repository;
 
 import com.db14.achelin.order.Order;
-import com.db14.achelin.restaurant.Restaurant;
-import com.db14.achelin.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
