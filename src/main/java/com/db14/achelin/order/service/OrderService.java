@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -95,10 +96,10 @@ public class OrderService {
             OrderInfoForRestaurant orderInfo = OrderInfoForRestaurant.builder()
                     .orderNum(order.getOrderNum())
                     .dishName(order.getDish().getDishName())
+                    .orderTime(order.getOrderTime())
                     .build();
             orderInfoList.add(orderInfo);
         }
-
         return OrderListForRestaurant.builder()
                 .total((long) orderInfoList.size())
                 .orderListForRestaurant(orderInfoList)
@@ -119,8 +120,7 @@ public class OrderService {
                     .build();
             orderResponseList.add(orderResponse);
         }
-
-
+        Collections.reverse(orderResponseList);
         return MyOrderList.builder()
                 //.waiting(waitingList)
                 .myOrderList(orderResponseList)
